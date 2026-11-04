@@ -370,3 +370,22 @@ header h1 {
         box-sizing: border-box;
     }
 }
+.quiz-card{
+  background: rgba(20, 28, 24, 0.8);
+  border: 1px solid rgba(50, 168, 82, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none; 
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  flex: 1;
+}
+.quiz-header{
+  flex: 1;
+  text-decoration: none; 
+  
+}
