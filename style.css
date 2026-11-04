@@ -223,3 +223,150 @@ body {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6), 0 0 10px rgba(50, 168, 82, 0.2);
   color: #ffffff;
 }
+.guide-card, .guide-step {
+    width: 100%;
+    box-sizing: border-box; /* Чтобы отступы не ломали ширину */
+}
+/* ==========================================
+   1. СБРОС СТИЛЕЙ И БАЗОВЫЕ НАСТРОЙКИ
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #0f172a; /* Темный современный фон */
+    color: #e2e8f0;            /* Светлый приятный текст */
+    line-height: 1.6;
+    padding: 20px 0;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   2. ОСНОВНОЙ КОНТЕЙНЕР (АДАПТИВНЫЙ)
+   ========================================== */
+.container {
+    width: 92%;               /* На мобилках оставляет небольшие поля по бокам */
+    max-width: 900px;         /* На ПК сайт станет просторным и широким */
+    margin: 0 auto;           /* Центрирование на экране */
+    padding: 10px;
+}
+
+/* ==========================================
+   3. ШАПКА САЙТА
+   ========================================== */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Плавно масштабируется от мобилок к ПК */
+    color: #f8fafc;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    color: #94a3b8;
+}
+
+/* ==========================================
+   4. КАРТОЧКА ГАЙДА И ШАГИ
+   ========================================== */
+.guide-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.guide-step {
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.guide-step:last-child {
+    margin-bottom: 0;
+}
+
+.guide-step:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+}
+
+.guide-step h3 {
+    color: #38bdf8;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.guide-step p {
+    color: #cbd5e1;
+    font-size: 1rem;
+}
+
+/* Оформление специального блока ВАЖНО */
+.warning-step {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+}
+
+.warning-step h3 {
+    color: #f87171;
+}
+
+/* ==========================================
+   5. КНОПКИ И ССЫЛКИ
+   ========================================== */
+.back-link {
+    display: inline-block;
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 16px;
+    border-radius: 6px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+/* ==========================================
+   6. МЕДИАЗАПРОСЫ (MEDIA QUERIES)
+   ========================================== */
+
+/* Для мобильных экранов (телефоны) */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 5px;
+    }
+
+    .guide-card {
+        padding: 16px; /* Меньше паддингов на узких экранах */
+    }
+
+    .guide-step {
+        padding: 14px 16px;
+    }
+
+    .back-link {
+        width: 100%;       /* Кнопка «Назад» на весь экран для удобного тапа пальцем */
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
