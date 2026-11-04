@@ -1,0 +1,225 @@
+body {
+  /* Тёмный цвет подложки */
+  background-color: #0d1210;
+
+  /* Накладываем тёмный градиент для читаемости + постер */
+  background-image: 
+    linear-gradient(to bottom, rgba(13, 18, 16, 0.75) 0%, rgba(13, 18, 16, 0.92) 100%),
+    url('poster1.png'); 
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+  color: #e0e6e3;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Выстраиваем всё строго сверху вниз */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Главный контейнер сайта */
+.hero-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Шильдик */
+.badge {
+  align-self: flex-start;
+  display: inline-block;
+  background: rgba(50, 168, 82, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(50, 168, 82, 0.3);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+/* Заголовок H1 */
+.hero-title {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.5px;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* Описание */
+.hero-description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.hero-description strong {
+  color: #4ade80;
+}
+
+/* Подтекст */
+.hero-subtext {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #94a3b8;
+  border-left: 3px solid #32a852;
+  padding-left: 16px;
+  margin: 0;
+}
+
+/* --- Секция с карточками проблем --- */
+
+.problems-section {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Сетка карточек */
+.cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cards-grid {
+    flex-direction: row;
+  }
+}
+
+/* Стили самой карточки */
+.problem-card {
+  background: rgba(20, 28, 24, 0.8);
+  border: 1px solid rgba(50, 168, 82, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none; /* Убираем синее подчеркивание ссылок */
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  flex: 1;
+}
+
+/* Эффект при наведении */
+.problem-card:hover {
+  background: rgba(28, 40, 34, 0.9);
+  border-color: rgba(74, 222, 128, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(50, 168, 82, 0.2);
+}
+
+/* Тэги внутри карточек */
+.card-tag {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.card-tag.red {
+  background: rgba(217, 83, 79, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(217, 83, 79, 0.4);
+}
+
+.card-tag.orange {
+  background: rgba(229, 169, 60, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(229, 169, 60, 0.4);
+}
+
+.card-tag.yellow {
+  background: rgba(250, 204, 21, 0.2);
+  color: #facc15;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+}
+
+/* Текст внутри карточек */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  line-height: 1.35;
+}
+
+.card-desc {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+.card-arrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4ade80;
+  transition: padding-left 0.2s ease;
+}
+
+.problem-card:hover .card-arrow {
+  padding-left: 4px;
+}
+/* Кнопка возврата на главную */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20, 28, 24, 0.85);
+  border: 1px solid rgba(50, 168, 82, 0.35);
+  color: #4ade80;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.back-link:hover {
+  background: rgba(28, 40, 34, 0.95);
+  border-color: rgba(74, 222, 128, 0.7);
+  transform: translateX(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6), 0 0 10px rgba(50, 168, 82, 0.2);
+  color: #ffffff;
+}

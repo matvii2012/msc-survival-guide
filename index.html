@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satsuma GT — Справочник</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="hero-container">
+    <span class="badge">MSC Survival Guide v1.0</span>
+    <h1 class="hero-title">Satsuma GT: Справочник выживания в финской глуши</h1>
+    <p class="hero-description">
+      Собрал Satsuma GT, а она не заводится? Глохнет на светофоре, стреляет в глушитель или греется так, что плавится капот? <strong>Ты по адресу.</strong>
+    </p>
+    <p class="hero-subtext">
+      Этот интерактивный справочник создан игроками для игроков. Никакой воды — только точные размеры ключей, честные гайды и интерактивные тесты на знание матчасти. Проверь, настоящий ли ты механик, или тебе еще рано садиться за руль!
+    </p>
+  </div>
+
+  <!-- Блок с частыми проблемами -->
+  <div class="hero-container">
+    <div class="problems-section">
+      <h2 class="section-title">С чем беда, механик?</h2>
+      
+      <div class="cards-grid">
+        <!-- Карточка 1: Кипит (ссылается на наш новый файл) -->
+        <a href="overheat.html" class="problem-card">
+          <div class="card-tag red">Перегрев</div>
+          <h3 class="card-title">Только собрал Сатсуму, она кипит, хотя всё настроено?</h3>
+          <p class="card-desc">Гейзер антифриза из радиатора, фонтан пара и закипание за 2 минуты. В чём засада?</p>
+          <span class="card-arrow">Читать решение →</span>
+        </a>
+
+<!-- Карточка 2: Карбюратор / Дым -->
+        <a href="exhaust.html" class="problem-card">
+          <div class="card-tag orange">Смесь / Выхлоп</div>
+          <h3 class="card-title">Стреляет в глушитель или валит чёрный/белый дым?</h3>
+          <p class="card-desc">Настройка смеси (AFR), регулировка карбюратора на слух и по цвету выхлопа.</p>
+          <span class="card-arrow">Читать решение →</span>
+        </a>
+
+        <!-- Карточка 3: Не заводится (пока заглушка) -->
+        <a href="electrical.html" class="problem-card">
+          <div class="card-tag yellow">Электрика / Запуск</div>
+          <h3 class="card-title">Ключ поворачивается, а в ответ глухая тишина?</h3>
+          <p class="card-desc">Разбор проблем со стартером, аккумулятором, генератором и проводкой.</p>
+          <span class="card-arrow">Читать решение →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
