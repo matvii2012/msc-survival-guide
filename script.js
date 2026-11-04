@@ -1,29 +1,57 @@
+// Обработка плавных переходов между страницами (если они у тебя были настроены)
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. При загрузке страницы добавляем класс появления
-  requestAnimationFrame(() => {
-    document.body.classList.add('page-loaded');
-  });
+  // Логика отправки формы в Telegram-бот
+  const feedbackForm = document.querySelector('form');
 
-  // 2. Находим ВСЕ ссылки для перехода (карточки и кнопки "Назад")
-  const transitionLinks = document.querySelectorAll('.problem-card, .back-link');
+  if (feedbackForm) {
+    feedbackForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-  transitionLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      const targetUrl = link.getAttribute('href');
+      const contactInput = document.getElementById('contact');
+      const descInput = document.getElementById('problem-desc');
+      const submitBtn = feedbackForm.querySelector('button[type="submit"]');
 
-      // Проверяем, что ссылка ведет на другую страницу, а не просто якорь #
-      if (targetUrl && targetUrl !== '#' && !targetUrl.startsWith('#')) {
-        e.preventDefault(); // Задерживаем переход для анимации
+      const contact = contactInput.value.trim();
+      const desc = descInput.value.trim();
 
-        // Запускаем эффект ухода
-        document.body.classList.remove('page-loaded');
-        document.body.classList.add('page-exit');
+      if (!contact || !desc) return;
 
-        // Переходим по адресу ровно через 250 мс
-        setTimeout(() => {
-          window.location.href = targetUrl;
-        }, 250);
+      const TELEGRAM_BOT_TOKEN = '9133495733:AAH_Cuw9e4_m3KilcqEnpDpKTosOji92NVE';
+      const TELEGRAM_CHAT_ID = '7887312215';
+
+      // Меняем текст кнопки на время отправки
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = 'Отправка... 🛠️';
+      submitBtn.disabled = true;
+
+      const messageText = `🛠 <b>Новая заявка по Satsuma GT!</b>\n\n👤 <b>Контакт:</b> ${contact}\n📝 <b>Симптомы:</b>\n${desc}`;
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: messageText,
+            parse_mode: 'HTML'
+          })
+        });
+
+        if (response.ok) {
+          alert('Спасибо, механик! Заявка улетела в Telegram. Скоро добавим решение на сайт.');
+          feedbackForm.reset();
+        } else {
+          alert('Ошибка при отправке. Проверь токен или chat_id.');
+        }
+      } catch (error) {
+        console.error('Ошибка отправки в Telegram:', error);
+        alert('Не удалось связаться с ботом. Проверь интернет.');
+      } finally {
+        submitBtn.innerText = originalBtnText;
+        submitBtn.disabled = false;
       }
     });
-  });
+  }
 });

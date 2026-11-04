@@ -9,7 +9,7 @@
 <body>
 
   <div class="hero-container">
-    <span class="badge">MSC Survival Guide v1.0</span>
+    <span class="badge">MSC Survival Guide v0.0.1</span>
     <h1 class="hero-title">Satsuma GT: Справочник выживания в финской глуши</h1>
     <p class="hero-description">
       Собрал Satsuma GT, а она не заводится? Глохнет на светофоре, стреляет в глушитель или греется так, что плавится капот? <strong>Ты по адресу.</strong>
@@ -19,13 +19,13 @@
     </p>
   </div>
 
-  <!-- Блок с частыми проблемами -->
+  <!-- Блок с частыми проблемами и карточками -->
   <div class="hero-container">
     <div class="problems-section">
       <h2 class="section-title">С чем беда, механик?</h2>
       
       <div class="cards-grid">
-        <!-- Карточка 1: Кипит (ссылается на наш новый файл) -->
+        <!-- Карточка 1: Перегрев -->
         <a href="overheat.html" class="problem-card">
           <div class="card-tag red">Перегрев</div>
           <h3 class="card-title">Только собрал Сатсуму, она кипит, хотя всё настроено?</h3>
@@ -33,7 +33,7 @@
           <span class="card-arrow">Читать решение →</span>
         </a>
 
-<!-- Карточка 2: Карбюратор / Дым -->
+        <!-- Карточка 2: Смесь / Выхлоп -->
         <a href="exhaust.html" class="problem-card">
           <div class="card-tag orange">Смесь / Выхлоп</div>
           <h3 class="card-title">Стреляет в глушитель или валит чёрный/белый дым?</h3>
@@ -41,24 +41,53 @@
           <span class="card-arrow">Читать решение →</span>
         </a>
 
-        <!-- Карточка 3: Не заводится (пока заглушка) -->
+        <!-- Карточка 3: Электрика / Запуск -->
         <a href="electrical.html" class="problem-card">
           <div class="card-tag yellow">Электрика / Запуск</div>
           <h3 class="card-title">Ключ поворачивается, а в ответ глухая тишина?</h3>
           <p class="card-desc">Разбор проблем со стартером, аккумулятором, генератором и проводкой.</p>
           <span class="card-arrow">Читать решение →</span>
         </a>
-      </div>
-    </div>
-  </div>
-  <!-- Карточка 4: Не едет (мотор ревет) -->
+
+        <!-- Карточка 4: Трансмиссия / Не едет -->
         <a href="transmission.html" class="problem-card">
           <div class="card-tag" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border-color: rgba(239, 68, 68, 0.4);">Трансмиссия</div>
           <h3 class="card-title">Мотор ревёт и передачи клацают, а машина не едет?</h3>
           <p class="card-desc">Проверяем приводы, кулису КПП, затяжку маховика и прокачку сцепления.</p>
           <span class="card-arrow">Читать решение →</span>
         </a>
-  
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Блок обратной связи / Не нашел решение -->
+  <div class="hero-container" style="margin-top: 20px; margin-bottom: 60px;">
+    <div class="problems-section" style="background: rgba(20, 28, 24, 0.9); border: 1px dashed rgba(74, 222, 128, 0.3);">
+      <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 12px;">Не решил свою проблему, механик?</h2>
+      <p class="hero-subtext" style="margin-bottom: 24px;">
+        Сатсума ведет себя как умалишенная, а в справочнике нет твоего симптома? Оставь свои контакты и опиши поломку — разберем вместе, добавим в гайд и поможем оживить тачку!
+      </p>
+
+      <!-- Простая форма сбора заявок -->
+      <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 16px; max-width: 600px; margin: 0 auto;" onsubmit="event.preventDefault(); alert('Спасибо, механик! Запрос улетел в штаб-квартиру. Скоро добавим решение на сайт.');">
+        
+        <div style="display: flex; flex-direction: column; text-align: left; gap: 6px;">
+          <label for="contact" style="color: #4ade80; font-size: 0.9rem; font-weight: 600;">Почта или Telegram (@username):</label>
+          <input type="text" id="contact" placeholder="Например: @msc_mechanic или email@domain.com" required style="padding: 12px 16px; background: rgba(10, 15, 12, 0.9); border: 1px solid rgba(50, 168, 82, 0.4); border-radius: 8px; color: #ffffff; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s;">
+        </div>
+
+        <div style="display: flex; flex-direction: column; text-align: left; gap: 6px;">
+          <label for="problem-desc" style="color: #4ade80; font-size: 0.9rem; font-weight: 600;">Опиши симптомы поломки:</label>
+          <textarea id="problem-desc" rows="4" placeholder="Что происходит с машиной? Дым, звуки, поведение на дороге..." required style="padding: 12px 16px; background: rgba(10, 15, 12, 0.9); border: 1px solid rgba(50, 168, 82, 0.4); border-radius: 8px; color: #ffffff; font-family: inherit; font-size: 0.95rem; outline: none; resize: vertical; transition: border-color 0.2s;"></textarea>
+        </div>
+
+        <button type="submit" style="background: #15803d; color: #ffffff; border: none; padding: 14px 24px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.1s; box-shadow: 0 4px 12px rgba(21, 128, 61, 0.4);">
+          Отправить разработчику гайда 🛠️
+        </button>
+      </form>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
