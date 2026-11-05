@@ -3,48 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Перегрев двигателя — MSC Survival Guide</title>
+    <title data-i18n="overheat.documentTitle">Перегрев двигателя — MSC Survival Guide</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Перегрев двигателя</h1>
-            <p class="subtitle">Почему кипит Сатсума и как с этим бороться</p>
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+                <button class="lang-btn" data-lang="ua" onclick="setLanguage('ua')">UA</button>
+                <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+            </div>
+            <h1 data-i18n="overheat.title">Перегрев двигателя</h1>
+            <p class="subtitle" data-i18n="overheat.subtitle">Почему кипит Сатсума и как с этим бороться</p>
         </header>
+
 
         <main class="guide-card">
             <div class="guide-step">
-                <h3>1. Утечка охлаждающей жидкости</h3>
-                <p>Проверь затяжку всех патрубков и затянут ли сливной болт на блоке цилиндров. Если жидкость уходит, двигатель моментально закипит.</p>
+                <h3 data-i18n="overheat.step1Title">1. Утечка охлаждающей жидкости</h3>
+                <p data-i18n="overheat.step1Text">Проверь затяжку всех патрубков и затянут ли сливной болт на блоке цилиндров. Если жидкость уходит, двигатель моментально закипит.</p>
             </div>
 
             <div class="guide-step">
-                <h3>2. Забытая пробка радиатора</h3>
-                <p>Посмотри на радиатор сверху — если крышка не закручена до конца (или ты забыл её затянуть), система не держит давление и закипает мгновенно.</p>
+                <h3 data-i18n="overheat.step2Title">2. Забытая пробка радиатора</h3>
+                <p data-i18n="overheat.step2Text">Посмотри на радиатор сверху — если крышка не закручена до конца (или ты забыл её затянуть), система не держит давление и закипает мгновенно.</p>
             </div>
 
             <div class="guide-step">
-                <h3>3. Стоковый радиатор — мусор</h3>
-                <p>Стандартный заводской радиатор в MSC — это просто кусок фольги. Он откровенно не вывозит нагрузки, особенно если ехать на высоких оборотах.</p>
+                <h3 data-i18n="overheat.step3Title">3. Стоковый радиатор — мусор</h3>
+                <p data-i18n="overheat.step3Text">Стандартный заводской радиатор в MSC — это просто кусок фольги. Он откровенно не вывозит нагрузки, особенно если ехать на высоких оборотах.</p>
             </div>
 
             <div class="guide-step">
-                <h3>4. Бедная топливная смесь (AFR)</h3>
-                <p>Если смесь слишком бедная (в цилиндрах мало бензина и много воздуха), двигатель начинает работать на пределе и сильно греется. Настрой карбюратор.</p>
+                <h3 data-i18n="overheat.step4Title">4. Бедная топливная смесь (AFR)</h3>
+                <p data-i18n="overheat.step4Text">Если смесь слишком бедная (в цилиндрах мало бензина и много воздуха), двигатель начинает работать на пределе и сильно греется. Настрой карбюратор.</p>
             </div>
 
             <div class="guide-step warning-step">
-                <h3>ВАЖНО</h3>
-                <p>Не открывать радиатор если он горячий: кипящая охлаждайка выстрелит в глаза и персонаж на время ослепнет.</p>
+                <h3 data-i18n="overheat.warningTitle">ВАЖНО</h3>
+                <p data-i18n="overheat.warningText">Не открывать радиатор если он горячий: кипящая охлаждайка выстрелит в глаза и персонаж на время ослепнет.</p>
             </div>
         </main>
 
         <div style="margin-top: 30px;">
-            <a href="index.html" class="back-link">&larr; Вернуться к списку проблем</a>
+            <a href="index.html" class="back-link" data-i18n="common.backList">&larr; Вернуться к списку проблем</a>
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

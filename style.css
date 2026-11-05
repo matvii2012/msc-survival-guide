@@ -389,3 +389,78 @@ header h1 {
   text-decoration: none; 
   
 }
+
+.quiz-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border: 1px solid rgba(74, 222, 128, 0.55);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #15803d, #166534);
+  box-shadow: 0 6px 18px rgba(21, 128, 61, 0.3);
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.quiz-link-btn:hover {
+  transform: translateY(-2px);
+  border-color: #86efac;
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  box-shadow: 0 9px 24px rgba(21, 128, 61, 0.42);
+}
+
+.quiz-link-btn:focus-visible {
+  outline: 2px solid #86efac;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .quiz-link-btn {
+    width: 100%;
+  }
+}
+
+.lang-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+
+.lang-btn {
+  min-width: 48px;
+  padding: 8px 12px;
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  border-radius: 8px;
+  background: rgba(20, 28, 24, 0.85);
+  color: #cbd5e1;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.lang-btn:hover {
+  border-color: #4ade80;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.lang-btn.active {
+  border-color: #4ade80;
+  background: #15803d;
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.25);
+}
+
+.lang-btn:focus-visible {
+  outline: 2px solid #4ade80;
+  outline-offset: 3px;
+}

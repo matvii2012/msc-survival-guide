@@ -3,41 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Настройки игры Satsuma GT — Справочник MSC</title>
+  <title data-i18n="settings.documentTitle">Настройки игры Satsuma GT — Справочник MSC</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body> 
     <div class="hero-container">
-        <h1 class="hero-title">Настройки игры Satsuma GT</h1>
-        <p class="hero-description">
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" data-lang="ua" onclick="setLanguage('ua')">UA</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+        </div>
+        <h1 class="hero-title" data-i18n="settings.title">Настройки игры Satsuma GT</h1>
+        <p class="hero-description" data-i18n="settings.description">
             Здесь вы найдете все необходимые настройки для оптимизации вашего игрового опыта.
         </p>
     </div>
     <main class="guide-card">
         <div class="guide-step">
-            <h3>1. Графические настройки</h3>
-            <p>Настройте разрешение, качество текстур и эффекты для достижения оптимального баланса между производительностью и визуальной привлекательностью.</p>
+            <h3 data-i18n="settings.step1Title">1. Графические настройки</h3>
+            <p data-i18n="settings.step1Text">Настройте разрешение, качество текстур и эффекты для достижения оптимального баланса между производительностью и визуальной привлекательностью.</p>
         </div>
 
         <div class="guide-step">
-            <h3>2. Управление</h3>
-            <p>Настройте клавиши управления, чувствительность мыши или геймпада для комфортного управления автомобилем.</p>
+            <h3 data-i18n="settings.step2Title">2. Управление</h3>
+            <p data-i18n="settings.step2Text">Настройте клавиши управления, чувствительность мыши или геймпада для комфортного управления автомобилем.</p>
         </div>
 
         <div class="guide-step">
-            <h3>3. Аудио настройки</h3>
-            <p>Регулируйте громкость музыки, звуковых эффектов и голоса персонажей для создания идеальной звуковой атмосферы.</p>
+            <h3 data-i18n="settings.step3Title">3. Аудио настройки</h3>
+            <p data-i18n="settings.step3Text">Регулируйте громкость музыки, звуковых эффектов и голоса персонажей для создания идеальной звуковой атмосферы.</p>
         </div>
 
         <div class="guide-step">
-            <h3>4. Управление машиной</h3>
-            <p>Самая длинная часть этого раздела. Первое - что лучше просто сцепление или авто-сцепление? Если вам лень или просто не хочется самому выжимать сцепление, выберите автоматическое сцепление или наоборот по умолчанию сцепление на кнопку X английскую</p>
-            <p>Второе - это настройка трансмиссии. В базовой игре передау вверх кидать кнопкой G а вниз B сцепление читать выше так же в игре есть поддержка рулей и H-shifter`ов кому то так удобнее лично у автора сайта руля нету и он не может говорить что то о нем кому как удобнее</p>
+            <h3 data-i18n="settings.step4Title">4. Управление машиной</h3>
+            <p data-i18n="settings.step4Text1">Самая длинная часть этого раздела. Первое - что лучше просто сцепление или авто-сцепление? Если вам лень или просто не хочется самому выжимать сцепление, выберите автоматическое сцепление или наоборот по умолчанию сцепление на кнопку X английскую</p>
+            <p data-i18n="settings.step4Text2">Второе - это настройка трансмиссии. В базовой игре передау вверх кидать кнопкой G а вниз B сцепление читать выше так же в игре есть поддержка рулей и H-shifter`ов кому то так удобнее лично у автора сайта руля нету и он не может говорить что то о нем кому как удобнее</p>
         </div>
     </main>
             <div style="margin-top: 30px;">
-            <a href="index.html" class="back-link">&larr; Вернуться к списку проблем</a>
+            <a href="index.html" class="back-link" data-i18n="common.backList">&larr; Вернуться к списку проблем</a>
         </div>
     </div>
+    <script src="i18n.js"></script>
 </body>
 </html>

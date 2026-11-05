@@ -3,53 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Выхлоп и Карбюратор Satsuma GT — Справочник MSC</title>
+  <title data-i18n="exhaust.documentTitle">Выхлоп и Карбюратор Satsuma GT — Справочник MSC</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="hero-container">
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+      <button class="lang-btn" data-lang="ua" onclick="setLanguage('ua')">UA</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
     <!-- Кнопка назад -->
-    <a href="index.html" class="back-link">← На главную</a>
+    <a href="index.html" class="back-link" data-i18n="common.backHome">← На главную</a>
 
-    <span class="badge orange">Смесь / Выхлоп</span>
-    <h1 class="hero-title">Стреляет в глушитель или валит чёрный/белый дым?</h1>
+    <span class="badge orange" data-i18n="exhaust.badge">Смесь / Выхлоп</span>
+    <h1 class="hero-title" data-i18n="exhaust.title">Стреляет в глушитель или валит чёрный/белый дым?</h1>
     
-    <p class="hero-description">
+    <p class="hero-description" data-i18n="exhaust.description">
       Если Сатсума чихает во время сброса газа, ревет как прямоток из ада или выплевывает клубы дыма — дело в настройке карбюратора и топливно-воздушной смеси (AFR). <strong>Разбираемся по цветам выхлопа.</strong>
     </p>
 
     <!-- Блок с решением -->
     <div class="guide-content">
-      <h2>Диагностика по симптомам:</h2>
+      <h2 data-i18n="exhaust.checklist">Диагностика по симптомам:</h2>
       
       <div class="guide-step">
-        <h3>1. Стрельба в глушитель («хлопки»)</h3>
-        <p>Если при сбросе газа раздаются громкие хлопки, значит, топливо догорает прямо в выпускном коллекторе или глушителе. Причина — <strong>слишком богатая смесь</strong> или сбитое зажигание (трамблер). <strong>Решение:</strong> обедни смесь на карбюраторе и подкрути трамблер на слух, пока мотор не начнет работать ровно.</p>
+        <h3 data-i18n="exhaust.step1Title">1. Стрельба в глушитель («хлопки»)</h3>
+        <p data-i18n="exhaust.step1Text">Если при сбросе газа раздаются громкие хлопки, значит, топливо догорает прямо в выпускном коллекторе или глушителе. Причина — <strong>слишком богатая смесь</strong> или сбитое зажигание (трамблер). <strong>Решение:</strong> обедни смесь на карбюраторе и подкрути трамблер на слух, пока мотор не начнет работать ровно.</p>
       </div>
 
       <div class="guide-step">
-        <h3>2. Чёрный дым из трубы и залитые свечи</h3>
-        <p>Мотор захлебывается бензином, неохотно набирает обороты, а из глушителя валит черная сажа. <strong>Решение:</strong> винт качества смеси выкручен слишком сильно. Закручивай его обратно понемногу, пока смесь не придет в норму.</p>
+        <h3 data-i18n="exhaust.step2Title">2. Чёрный дым из трубы и залитые свечи</h3>
+        <p data-i18n="exhaust.step2Text">Мотор захлебывается бензином, неохотно набирает обороты, а из глушителя валит черная сажа. <strong>Решение:</strong> винт качества смеси выкручен слишком сильно. Закручивай его обратно понемногу, пока смесь не придет в норму.</p>
       </div>
 
       <div class="guide-step">
-        <h3>3. Белый дым и быстрый уход антифриза</h3>
-        <p>Если дым плотный белый на высоких оборотах — плохи дела. Это пробило прокладку головки блока цилиндров (ГБЦ), и антифриз херачит прямо в цилиндры. <strong>Решение:</strong> снимай головку блока, беги к Флиетари за новой прокладкой.</p>
+        <h3 data-i18n="exhaust.step3Title">3. Белый дым и быстрый уход антифриза</h3>
+        <p data-i18n="exhaust.step3Text">Если дым плотный белый на высоких оборотах — плохи дела. Это пробило прокладку головки блока цилиндров (ГБЦ), и антифриз херачит прямо в цилиндры. <strong>Решение:</strong> снимай головку блока, беги к Флиетари за новой прокладкой.</p>
       </div>
 
       <div class="guide-step">
-        <h3>4. Сизый/голубой дым и падение масла</h3>
-        <p>Мотор жрёт масло литрами, а из трубы идет едкий сизый дым. Это значит, что поршневой группе каюк (износились кольца или цилиндры). <strong>Решение:</strong> полный капремонт двигателя у механика.</p>
+        <h3 data-i18n="exhaust.step4Title">4. Сизый/голубой дым и падение масла</h3>
+        <p data-i18n="exhaust.step4Text">Мотор жрёт масло литрами, а из трубы идет едкий сизый дым. Это значит, что поршневой группе каюк (износились кольца или цилиндры). <strong>Решение:</strong> полный капремонт двигателя у механика.</p>
       </div>
     </div>
 
     <!-- Ссылка назад внизу -->
     <div style="margin-top: 30px;">
-      <a href="index.html" class="back-link">← Вернуться к списку проблем</a>
+      <a href="index.html" class="back-link" data-i18n="common.backList">← Вернуться к списку проблем</a>
     </div>
   </div>
 
   <script src="script.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>

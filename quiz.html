@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экзамен на механика Satsuma | MSC Survival Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quiz-container {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+        .question-box {
+            margin-bottom: 25px;
+        }
+        .question-title {
+            color: #38bdf8;
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-btn {
+            background-color: #0f172a;
+            color: #cbd5e1;
+            border: 1px solid #334155;
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        .option-btn:hover:not(:disabled) {
+            border-color: #38bdf8;
+            background-color: #1e293b;
+            color: #f8fafc;
+        }
+        .option-btn.correct {
+            background-color: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+            color: #4ade80;
+        }
+        .option-btn.wrong {
+            background-color: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #f87171;
+        }
+        #next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            padding: 12px 24px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #next-btn:hover {
+            background: #0ea5e9;
+        }
+        .quiz-results {
+            text-align: center;
+            display: none;
+        }
+        .quiz-results h2 {
+            color: #f8fafc;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .rank-badge {
+            display: inline-block;
+            background: rgba(234, 179, 8, 0.2);
+            color: #facc15;
+            border: 1px solid #facc15;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Шапка с языками и кнопкой назад -->
+        <header>
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="ru" onclick="setQuizLanguage('ru')">RU</button>
+                <button class="lang-btn" data-lang="ua" onclick="setQuizLanguage('ua')">UA</button>
+                <button class="lang-btn" data-lang="en" onclick="setQuizLanguage('en')">EN</button>
+            </div>
+            <a href="index.html" class="back-link" id="back-home">← На главную</a>
+            <h1 id="quiz-main-title" style="margin-top: 20px;">Экзамен на механика Satsuma</h1>
+            <p class="subtitle" id="quiz-sub">Проверь, сможешь ли ты завести машину и не сжечь двигатель</p>
+        </header>
+
+        <!-- Блок квиза -->
+        <div class="quiz-container">
+            <div id="quiz-card">
+                <div class="question-box">
+                    <h3 class="question-title" id="q-text">Загрузка вопроса...</h3>
+                    <div class="options-list" id="options-container">
+                        <!-- Варианты ответов генерируются через JS -->
+                    </div>
+                </div>
+                <button id="next-btn" onclick="nextQuestion()">Следующий вопрос →</button>
+            </div>
+
+            <!-- Результаты теста -->
+            <div class="quiz-results" id="quiz-results">
+                <h2 id="res-heading">Тест завершен!</h2>
+                <p id="res-score-text" style="font-size: 1.2rem; color: #94a3b8;"></p>
+                <div class="rank-badge" id="res-rank">Звание</div>
+                <p id="res-desc" style="margin-top: 15px; color: #cbd5e1;"></p>
+                <div style="margin-top: 25px;">
+                    <a href="index.html" class="back-link" id="restart-btn">На главную</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключаем общий словарь и скрипт квиза -->
+    <script src="i18n.js"></script>
+    <script>
+        // Дополняем переводы в i18n.js прямо для квиза (или можно вынести туда же)
+        const quizData = {
+            ru: {
+                back: "← На главную",
+                title: "Экзамен на механика Satsuma",
+                sub: "Проверь, сможешь ли ты завести машину и не сжечь двигатель",
+                next: "Следующий вопрос →",
+                questionPrefix: "Вопрос",
+                finished: "Экзамен окончен!",
+                score: "Правильных ответов: ",
+                ranks: [
+                    { min: 5, title: "🏆 Легенда Перкилане", desc: "Ты знаешь каждый болт в Сатсуме лучше, чем свое имя. Пивко и отрегулированный карбюратор — твой стиль жизни." },
+                    { min: 3, title: "🔧 Опытный алкаш-механик", desc: "Машина едет, иногда даже тормозит. Главное — не забыть затянуть болты подвески!" },
+                    { min: 1, title: "💥 Пешеход из Алавуус", desc: "Мотор взорвался на первой же сотне метров. Тебе еще учиться и учиться у кузена Томи." },
+                    { min: 0, title: "💀 Угроза для экологии", desc: "Ты умудрился залить антифриз в бак и сжечь сцепление на парковке. Лучше купи мопед." }
+                ],
+                questions: [
+                    {
+                        text: "Что происходит, если оставить болты поддона картера незатянутыми?",
+                        options: ["Ничего страшного, мотор тише работает", "Масло вытекнет на дорогу, а мотор заклинит", "Машина поедет быстрее за счет снижения веса"],
+                        correct: 1
+                    },
+                    {
+                        text: "Какое идеальное значение AFR (качества смеси) при настройке карбюратора?",
+                        options: ["Около 14.7 (стехиометрия / зеленые цифры датчика)", "Ровно 10.0 (чтобы валил черный дым)", "20.5 (чтобы экономить бензин)"],
+                        correct: 0
+                    },
+                    {
+                        text: "Что делать, если из радиатора повалил густой пар через 2 минуты после старта?",
+                        options: ["Долить пива в бачок", "Проверить, затянут ли патрубок и залит ли антифриз", "Посигналить — само пройдет"],
+                        correct: 1
+                    },
+                    {
+                        text: "Какой ключ нужен для затяжки большинства болтов подвески Satsuma?",
+                        options: ["На 10", "На 9", "На 7 (иногда на 8 или 6)"],
+                        correct: 2
+                    },
+                    {
+                        text: "Что случится, если ехать задним ходом на скорости 80 км/ч?",
+                        options: ["Включится супер-ускорение", "Трансмиссия и коробка передач разлетятся вдребезги", "Ничего не произойдет"],
+                        correct: 1
+                    }
+                ]
+            },
+            ua: {
+                back: "← На головну",
+                title: "Іспит на механіка Satsuma",
+                sub: "Перевір, чи зможеш ти завести машину і не спалити двигун",
+                next: "Наступне питання →",
+                questionPrefix: "Питання",
+                finished: "Іспит завершено!",
+                score: "Правильних відповідей: ",
+                ranks: [
+                    { min: 5, title: "🏆 Легенда Перкілане", desc: "Ти знаєш кожен болт у Сатсумі краще за своє ім'я. Пивко та відрегульований карбюратор — твій стиль життя." },
+                    { min: 3, title: "🔧 Досвідчений алкаш-механік", desc: "Машина їде, іноді навіть гальмує. Головне — не забути затягнути болти підвіски!" },
+                    { min: 1, title: "💥 Пішохід з Алавуус", desc: "Мотор вибухнув на першій же сотні метрів. Тобі ще вчитися і вчитися у кузена Томі." },
+                    { min: 0, title: "💀 Загроза для екології", desc: "Ти умудрився залити антифриз у бак і спалити зчеплення на парковці. Краще купи мопед." }
+                ],
+                questions: [
+                    {
+                        text: "Що відбувається, якщо залишити болти піддону картера незатягнутими?",
+                        options: ["Нічого страшного, мотор тихіше працює", "Масло витече на дорогу, а мотор заклинить", "Машина поїде швидше за рахунок зниження ваги"],
+                        correct: 1
+                    },
+                    {
+                        text: "Яке ідеальне значення AFR (якості суміші) при налаштуванні карбюратора?",
+                        options: ["Близько 14.7 (стехіометрія / зелені цифри датчика)", "Рівно 10.0 (щоб валив чорний дим)", "20.5 (щоб економити бензин)"],
+                        correct: 0
+                    },
+                    {
+                        text: "Що робити, якщо з радіатора пішов густий пар через 2 хвилини після старту?",
+                        options: ["Долити пива в бачок", "Перевірити, чи затягнутий патрубок і чи залитий антифриз", "Посигналити — само пройде"],
+                        correct: 1
+                    },
+                    {
+                        text: "Який ключ потрібен для затягування більшості болтів підвіски Satsuma?",
+                        options: ["На 10", "На 9", "На 7 (іноді на 8 або 6)"],
+                        correct: 2
+                    },
+                    {
+                        text: "Що станеться, якщо їхати заднім ходом на швидкості 80 км/год?",
+                        options: ["Увімкнеться супер-прискорення", "Трансмісія та коробка передач розлетяться вщент", "Нічого не станеться"],
+                        correct: 1
+                    }
+                ]
+            },
+            en: {
+                back: "← Back to home",
+                title: "Satsuma Mechanic Exam",
+                sub: "Check if you can start the car without blowing up the engine",
+                next: "Next question →",
+                questionPrefix: "Question",
+                finished: "Exam finished!",
+                score: "Correct answers: ",
+                ranks: [
+                    { min: 5, title: "🏆 Perkilajärvi Legend", desc: "You know every bolt in Satsuma better than your own name. Beer and a tuned carburetor are your lifestyle." },
+                    { min: 3, title: "🔧 Experienced Drunk Mechanic", desc: "The car drives, sometimes even brakes. Just don't forget to tighten the suspension bolts!" },
+                    { min: 1, title: "💥 Alavuus Pedestrian", desc: "The engine blew up within the first hundred meters. You still have a lot to learn from Cousin Teimo." },
+                    { min: 0, title: "💀 Ecological Threat", desc: "You managed to pour antifreeze into the fuel tank and burn the clutch in the parking lot. Better buy a moped." }
+                ],
+                questions: [
+                    {
+                        text: "What happens if you leave the oil pan bolts loose?",
+                        options: ["Nothing bad, engine runs quieter", "Oil leaks onto the road and the engine seizes", "Car goes faster due to weight reduction"],
+                        correct: 1
+                    },
+                    {
+                        text: "What is the ideal AFR (air-fuel ratio) when tuning the carburetor?",
+                        options: ["Around 14.7 (stoichiometry / green gauge numbers)", "Exactly 10.0 (so it dumps black smoke)", "20.5 (to save gas)"],
+                        correct: 0
+                    },
+                    {
+                        text: "What to do if thick steam pours from the radiator 2 minutes after starting?",
+                        options: ["Top up beer in the reservoir", "Check if the hose is clamped and antifreeze is filled", "Honk the horn — it will pass"],
+                        correct: 1
+                    },
+                    {
+                        text: "Which wrench size is needed for most Satsuma suspension bolts?",
+                        options: ["10mm", "9mm", "7mm (sometimes 8mm or 6mm)"],
+                        correct: 2
+                    },
+                    {
+                        text: "What happens if you drive in reverse at 80 km/h?",
+                        options: ["Super-acceleration engages", "Transmission and gearbox shatter into pieces", "Nothing happens"],
+                        correct: 1
+                    }
+                ]
+            }
+        };
+
+        let currentLang = localStorage.getItem('selectedLang') || 'ru';
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function setQuizLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('selectedLang', lang);
+
+            // Обновляем элементы интерфейса квиза
+            document.getElementById('back-home').textContent = quizData[lang].back;
+            document.getElementById('quiz-main-title').textContent = quizData[lang].title;
+            document.getElementById('quiz-sub').textContent = quizData[lang].sub;
+            document.getElementById('next-btn').textContent = quizData[lang].next;
+            document.getElementById('restart-btn').textContent = quizData[lang].back;
+            document.title = `${quizData[lang].title} | MSC Survival Guide`;
+
+            // Активные кнопки языка
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            if (currentQuestion < quizData[currentLang].questions.length) {
+                showQuestion();
+            }
+        }
+
+        function showQuestion() {
+            answered = false;
+            document.getElementById('next-btn').style.display = 'none';
+            const qData = quizData[currentLang].questions[currentQuestion];
+            
+            document.getElementById('q-text').textContent = `${quizData[currentLang].questionPrefix} ${currentQuestion + 1}/${quizData[currentLang].questions.length}: ${qData.text}`;
+            
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            qData.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => selectOption(index, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(index, btnElement) {
+            if (answered) return;
+            answered = true;
+
+            const qData = quizData[currentLang].questions[currentQuestion];
+            const buttons = document.querySelectorAll('.option-btn');
+
+            if (index === qData.correct) {
+                btnElement.classList.add('correct');
+                score++;
+            } else {
+                btnElement.classList.add('wrong');
+                buttons[qData.correct].classList.add('correct');
+            }
+
+            buttons.forEach(b => b.disabled = true);
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData[currentLang].questions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-card').style.display = 'none';
+            document.getElementById('quiz-results').style.display = 'block';
+
+            document.getElementById('res-heading').textContent = quizData[currentLang].finished;
+            document.getElementById('res-score-text').textContent = `${quizData[currentLang].score} ${score} / ${quizData[currentLang].questions.length}`;
+
+            // Подбираем звание
+            const ranks = quizData[currentLang].ranks;
+            let currentRank = ranks[ranks.length - 1];
+            for (let r of ranks) {
+                if (score >= r.min) {
+                    currentRank = r;
+                    break;
+                }
+            }
+
+            document.getElementById('res-rank').textContent = currentRank.title;
+            document.getElementById('res-desc').textContent = currentRank.desc;
+        }
+
+        // Старт при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            setQuizLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
